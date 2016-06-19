@@ -1,0 +1,11 @@
+
+.discussion {
+  width: 50%;
+  float: left;
+  background-color: yellow;
+}
+.task {
+  width: 50%;
+  float: right;
+  background-color: grey;
+}

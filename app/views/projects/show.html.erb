@@ -1,0 +1,64 @@
+<h1>Project Details</h1>
+<%= @project.title %><br>
+<%= @project.description %><br>
+<%= @project.due_date %><br>
+<%= link_to "Edit", edit_project_path(@project) %>
+<%= link_to "Delete", project_path(@project), method: :delete,
+                                                data: {confirm: "Are you sure?"} %><br>
+<div class="discussion">
+<h2>Enter your discussion</h2>
+<%= @discussion.errors.full_messages.join(",") %>
+<%= form_for [@project, @discussion] do |f| %>
+  <div>
+      <%= f.label "Title" %>
+      <div>
+        <%= f.text_field :title %>
+      </div>
+      <%= f.label "Description" %>
+      <div>
+        <%= f.text_area :description %>
+      </div>
+    </div>
+    <%= f.submit %>
+<% end %>
+<hr>
+<h2>Discussions</h2>
+<% @project.discussions.each do |discussion| %>
+  <h4><%= link_to discussion.title, project_discussion_path(@project, discussion) %></h4>
+  <%= link_to "Edit", edit_project_discussion_path(@project, discussion) %>
+  <%= link_to "Delete", project_discussion_path(@project, discussion), method: :delete,
+                                                data: {confirm: "Are you sure?"} %>
+  <hr>
+<% end %>
+</div>
+<div class="task">
+<h2>Enter your task</h2>
+<%= @task.errors.full_messages.join(",") %>
+<%= form_for [@project, @task] do |f| %>
+  <div>
+      <%= f.label "Title" %>
+      <div>
+        <%= f.text_field :title %>
+      </div>
+      <%= f.label "Body" %>
+      <div>
+        <%= f.text_area :body %>
+      </div>
+      <%= f.label "Due date" %>
+      <div>
+        <%= f.text_field :due_date %>
+      </div>
+    </div>
+    <%= f.submit %>
+<% end %>
+<h2>Tasks</h2>
+<% @project.tasks.each do |task| %>
+  <h4><%= task.title %></h4>
+  <%= task.body %>
+  <%= link_to "Edit", edit_project_task_path(@project, task) %>
+  <%= button_to "#{task.mark}", project_mark_path(@project, task), :class => "button", :method => :post %>
+  <%= link_to "Delete", project_task_path(@project, task), method: :delete,
+                                                data: {confirm: "Are you sure?"} %>
+  <hr>
+<% end %>
+</div>

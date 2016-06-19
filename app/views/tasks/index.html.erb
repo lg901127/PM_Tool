@@ -1,0 +1,7 @@
+<h1>Tasks</h1>
+<hr>
+<% @tasks.each do |task| %>
+  <%= link_to task.title, task_path(task) %>
+  <hr>
+<% end %>
+<%= will_paginate @tasks %>

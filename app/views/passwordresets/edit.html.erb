@@ -1,0 +1,11 @@
+<%= form_tag passwordreset_path(params[:id]), method: :patch do %>
+  <div>
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+  </div>
+  <div>
+    <%= label_tag :password_confirmation %>
+    <%= password_field_tag :password_confirmation %>
+  </div>
+  <%= submit_tag "Update" %>
+<% end %>

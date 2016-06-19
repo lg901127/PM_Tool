@@ -1,0 +1,17 @@
+<h1>Edit Task</h1>
+<%= @task.errors.full_messages.join(", ") %>
+<%= form_for [@project, @task] do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_area :title %>
+    <div>
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+    </div>
+  </div>
+  <div>
+    <%= f.label :due_date %>
+    <%= f.text_area :due_date %>
+  </div>
+    <%= f.submit %>
+<% end %>
