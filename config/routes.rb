@@ -10,9 +10,15 @@ Rails.application.routes.draw do
   resources :projects do
     resources :tasks
     post "/tasks/:id" => "tasks#mark", as: :mark
+    resources :favourites, only: [:create, :destroy]
+    resources :teams, only: [:new, :create] do
+      get :edit, on: :collection
+      patch :update, on: :collection
+    end
     resources :discussions do
       resources :comments
     end#, shallow: true
   end
+  resources :favourites, only: [:index]
 
 end

@@ -3,6 +3,10 @@ class User < ActiveRecord::Base
   has_many :discussions, dependent: :destroy
   has_many :tasks, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :favourites, dependent: :destroy
+  has_many :favourite_projects, through: :favourites, source: :projects
+  has_many :teams, dependent: :nullify
+  has_many :team_projects, through: :teams, source: :projects
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true, format: /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i

@@ -1,4 +1,8 @@
-
+/*
+*= require_tree .
+*= require_self
+*= require font-awesome
+*/
 .discussion {
   width: 50%;
   float: left;
